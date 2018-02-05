@@ -46,8 +46,7 @@ jobs:
       # Deployment.
       - run:
           name: Installing AWS client
-          command: |
-            apk add --no-cache jq py-pip sudo
+          command: |            
             sudo pip install awscli --upgrade
       - deploy:
           command: ./deploy.sh DEV $CIRCLE_SHA1
