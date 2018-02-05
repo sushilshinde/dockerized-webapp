@@ -1,3 +1,9 @@
+#!/bin/bash
+set -eo pipefail
+
+# more bash-friendly output for jq
+JQ="jq --raw-output --exit-status"
+
 configure_aws_cli() {
 	aws --version
 	aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
@@ -7,11 +13,12 @@ configure_aws_cli() {
 	echo "Configured AWS CLI."
 }
 
-
 push_ecr_image() {
 	echo "Pushing Docker Image...."
-	eval $(aws ecr get-login --region $AWS_REGION --no-include-email)
-	docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$AWS_REPOSITORY:$TAG
+	eval $(aws ecr get-login --region us-east-1 --no-include-email)	
+	docker push 811668436784.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:$TAG
 	echo "Docker Image published."
-
 }
+
+configure_aws_cli
+push_ecr_image
