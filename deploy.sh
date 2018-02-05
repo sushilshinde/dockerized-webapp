@@ -4,6 +4,9 @@ set -eo pipefail
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"
 
+ENV=$1
+TAG=$2
+
 configure_aws_cli() {
 	aws --version
 	aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
