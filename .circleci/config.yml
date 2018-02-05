@@ -46,8 +46,14 @@ jobs:
       # Deployment.
       - run:
           name: Installing AWS client
-          command: |
-            sudo apt install jq
-            sudo apt install awscli
+          command: |            
+            sudo apt-get install python3.4
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3 get-pip.py --user
+            export PATH=~/.local/bin:$PATH
+            source ~/.bash_profile
+            pip install awscli --upgrade --user            
+            aws --version
+
       - deploy:
           command: ./deploy.sh DEV $CIRCLE_SHA1
