@@ -20,7 +20,7 @@ configure_aws_cli() {
 push_ecr_image() {
 	echo "Pushing Docker Image...."
 	echo $TAG
-	eval $(aws ecr get-login --region us-east-1 --no-include-email)	
+	eval $(aws ecr get-login --no-include-email --region us-east-1)		
 	docker push 811668436784.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:$TAG
 	echo "Docker Image published."
 }
