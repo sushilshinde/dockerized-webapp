@@ -49,5 +49,6 @@ jobs:
           command: |
             sudo apt install jq
             sudo apt install awscli
+            pip install --upgrade awscli
       - deploy:
           command: ./deploy.sh DEV $CIRCLE_SHA1
