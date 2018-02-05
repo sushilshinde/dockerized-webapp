@@ -47,10 +47,7 @@ jobs:
       - run:
           name: Installing AWS client
           command: |
-            sudo apt-get install python-pip python-dev build-essential 
-            sudo pip install --upgrade pip 
-            sudo pip install --upgrade virtualenv
-            sudo apt install jq            
-            pip install --upgrade awscli
+            sudo apt install jq
+            sudo apt install awscli
       - deploy:
           command: ./deploy.sh DEV $CIRCLE_SHA1
