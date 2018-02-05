@@ -21,7 +21,7 @@ push_ecr_image() {
 	echo "Pushing Docker Image...."
 	echo $TAG
 	echo aws ecr get-login --no-include-email --region us-east-1
-	eval $(aws ecr get-login --no-include-email --region us-east-1)		
+	eval $(aws ecr get-login --no-include-email  --region=us-east-1)		
 	docker push 811668436784.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:$TAG
 	echo "Docker Image published."
 }
