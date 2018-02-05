@@ -8,6 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
+      - image: docker:17.06.1-ce-git
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -46,14 +47,8 @@ jobs:
       # Deployment.
       - run:
           name: Installing AWS client
-          command: |            
-            sudo apt-get install python3.4
-            curl -O https://bootstrap.pypa.io/get-pip.py
-            python3 get-pip.py --user
-            export PATH=~/.local/bin:$PATH
-            source ~/.bash_profile
-            pip install awscli --upgrade --user            
-            aws --version
-
+          command: |
+            apk add --no-cache jq py-pip sudo
+            sudo pip install awscli --upgrade
       - deploy:
           command: ./deploy.sh DEV $CIRCLE_SHA1
